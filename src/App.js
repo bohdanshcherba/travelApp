@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect} from 'react';
+import {Navigate, Route, Routes} from 'react-router-dom';
+import {PublicRouters, ProtectedRoutersUser} from './common'
+import {SignUp, SignIn, Main, Booking, Trip} from './pages'
+import {Header, Footer} from "./components";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+
+    let isAuth = true
+
+    return (
+        <div className="App">
+            <Header/>
+            <Routes>
+                <Route path={'*'} element={<Navigate to={'/'}/>}/>
+
+                <Route element={<PublicRouters isAuth={isAuth}/>}>
+                    <Route path={'/sign-up'} element={<SignUp/>}/>
+                    <Route path={'/sign-in'} element={<SignIn/>}/>
+
+                </Route>
+                <Route element={<ProtectedRoutersUser isUser={isAuth}/>}>
+                    <Route path={'/bookings'} element={<Booking/>}/>
+                    <Route path={'/trip/:tripId'} element={<Trip/>}/>
+
+                </Route>
+
+                <Route path={'/'} element={<Main/>}/>
+
+            </Routes>
+            <Footer/>
+        </div>
+    );
 }
 
 export default App;

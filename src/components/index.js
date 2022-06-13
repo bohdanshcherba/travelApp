@@ -1,0 +1,6 @@
+export {default as Header} from './header/header'
+export {default as Footer} from './footer/footer'
+export {default as TripCard} from './trip-card/tripCard'
+export {default as TripFilter} from './trips-filter/tripFilter'
+export {default as BookingItem} from './booking-item/bookingItem'
+export {default as BookingModal} from './booking-modal/bookingModal'
