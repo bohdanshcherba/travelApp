@@ -1,8 +1,26 @@
-import React from 'react';
-import {Link} from "react-router-dom";
+import React, {useState} from 'react';
+import {Link, Navigate} from "react-router-dom";
 import './style.css'
 
-const SignUp = (props) => {
+const SignUp = ({setUser}) => {
+
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [username, setUsername] = useState('')
+
+    const submitHandler = () => {
+      if(password.length >= 3 && password.length <= 20){
+          setUser({
+              fullName:username,
+              password:password,
+              email:email,
+              isAuth: true
+          })
+
+          return (<Navigate to={'/'}/>)
+      }
+
+    }
 
     return (
         <main className="sign-up-page">
@@ -11,17 +29,17 @@ const SignUp = (props) => {
                 <h2 className="sign-up-form__title">Sign Up</h2>
                 <label className="trip-popup__input input">
                     <span className="input__heading">Full name</span>
-                    <input name="full-name" type="text" required/>
+                    <input name="full-name" type="text" value={username} onChange={event => setUsername(event.target.value)} required/>
                 </label>
                 <label className="trip-popup__input input">
                     <span className="input__heading">Email</span>
-                    <input name="email" type="email" required/>
+                    <input name="email" type="email" value={email} onChange={event => setEmail(event.target.value)} required/>
                 </label>
                 <label className="trip-popup__input input">
                     <span className="input__heading">Password</span>
-                    <input name="password" type="password" autoComplete="new-password" required/>
+                    <input name="password" type="password" min='3' max='20' autoComplete="new-password" value={password} onChange={event => setPassword(event.target.value)} required/>
                 </label>
-                <button className="button" type="submit">Sign Up</button>
+                <button className="button" type="submit" onClick={submitHandler}>Sign Up</button>
             </form>
             <span>
         Already have an account?

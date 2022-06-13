@@ -1,25 +1,24 @@
 import React from 'react';
-import trip from "../../assets/images/iceland.jpg";
 import {Link} from "react-router-dom";
 
-const TripCard = (props) => {
+const TripCard = ({trip},key) => {
     return (
-        <li className="trip-card">
-            <img src={trip} alt="trip image"/>
+        <li className="trip-card" key={key}>
+            <img src={trip.image} alt="trip image" className='trip__img'/>
             <div className="trip-card__content">
                 <div className="trip-info">
-                    <h3 className="trip-info__title">Island</h3>
+                    <h3 className="trip-info__title">{trip.title}</h3>
                     <div className="trip-info__content">
-                        <span className="trip-info__duration"><strong>15</strong> days</span>
-                        <span className="trip-info__level">easy</span>
+                        <span className="trip-info__duration"><strong>{trip.duration}</strong> days</span>
+                        <span className="trip-info__level">{trip.level}</span>
                     </div>
                 </div>
                 <div className="trip-price">
                     <span>Price</span>
-                    <strong className="trip-price__value">7000 $</strong>
+                    <strong className="trip-price__value">{trip.price} $</strong>
                 </div>
             </div>
-            <Link to="/trip/1" className="button">Discover a trip</Link>
+            <Link to={`/trip/${trip.id}`} className="button">Discover a trip</Link>
         </li>
     )
 }
