@@ -1,11 +1,12 @@
 import {configureStore} from '@reduxjs/toolkit'
 import * as services from '../services/services'
-import {UserReducer, TripsReducer} from "./rootReducer";
+import {UserReducer, TripsReducer,BookingReducer } from "./rootReducer";
 
 export const store = configureStore({
     reducer: {
         user: UserReducer,
-        trips: TripsReducer
+        trips: TripsReducer,
+        booking: BookingReducer()
     },
     middleware: getDefaultMiddleware => (getDefaultMiddleware({
         thunk: {

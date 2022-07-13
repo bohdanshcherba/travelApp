@@ -3,10 +3,10 @@ import {tripsActionCreator} from '../actions'
 
 const initialState = {
     trips: [{
-        "id": "6288f90c2683168b8e95c372",
-        "title": "Iceland",
-        "description": "Description",
-        "level": "easy",
+        "id": "",
+        "title": "",
+        "description": "",
+        "level": "",
         "duration": 10,
         "price": 7000,
         "image": "https://i.gyazo.com/0aae9c20e73caebb07c0dbdfe2bbd89c.jpg",
