@@ -1,11 +1,18 @@
 const url = "https://travel-app-api.glitch.me/api/v1/bookings"
 
 class Booking {
-    getAll = async () => {
-        return await fetch(`${url}/`).then(res => res.json())
+    getAll = async (token) => {
+        return await fetch(`${url}/`,{
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'authorization': `Bearer ${token}`
+            }
+        }).then(res => res.json())
     }
 
-    create = async (data) =>{
+    create = async (data,token) =>{
 
         return await fetch(`${url}/`, {
             method: 'POST',
@@ -13,16 +20,20 @@ class Booking {
             body: JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/json',
-                'Accept': 'application/json'
+                'Accept': 'application/json',
+                'authorization': `Bearer ${token}`
             }
 
         }).then(res => res.json())
 
     }
 
-    delete = async (id) => {
+    delete = async (id,token) => {
         return await fetch(`${url}/${id}`,{
-            method: "DELETE"
+            method: "DELETE",
+            headers: {
+                'authorization': `Bearer ${token}`
+            }
         }).then(res => res.json())
     }
 }
