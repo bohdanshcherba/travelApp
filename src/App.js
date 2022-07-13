@@ -42,7 +42,7 @@ const App = () => {
         <div className="App">
             <Header user={user} isAuth={isAuth} handleLogOutSubmit={handleLogOutSubmit}/>
             <Routes>
-                <Route path={'*'} element={<Navigate to={'/'}/>}/>
+                <Route path={'*'} element={<Navigate to={'/sign-up'}/>}/>
 
                 <Route element={<PublicRouters isAuth={isAuth}/>}>
                     <Route path={'/sign-up'} element={<SignUp handleSignUpSubmit={handleSignUpSubmit}/>}/>
@@ -50,12 +50,13 @@ const App = () => {
 
                 </Route>
                 <Route element={<ProtectedRoutersUser isUser={isAuth}/>}>
+                    <Route path={'/'} element={<Main/>}/>
                     <Route path={'/bookings'} element={<Booking/>}/>
                     <Route path={'/trip/:tripId'} element={<Trip user={user}/>}/>
 
                 </Route>
 
-                <Route path={'/'} element={<Main/>}/>
+
 
             </Routes>
             <Footer/>

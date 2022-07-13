@@ -7,7 +7,7 @@ const BookingItem = ({Booking, handleDelete}) => {
     const handleDeleteBooking = (e) => {
 
         handleDelete(Booking.id)
-        
+
     }
 
     return (
