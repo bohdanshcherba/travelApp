@@ -1,12 +1,24 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './style.css'
-import * as data from '../../assets/data/data'
-import {BookingModal} from '../../components/index'
-
 import {TripCard, TripFilter} from "../../components/index"
-const Main = (props) => {
+import { tripsActionCreator } from '../../store/actions';
+import {useDispatch, useSelector} from "react-redux";
 
-    const [trips, setTrips] = useState(data.trips)
+const Main = (props) => {
+    const dispatch = useDispatch()
+
+
+    const {trips1} = useSelector(state => ({
+        trips1: state.trips.trips
+    }));
+
+    const [trips, setTrips] = useState(trips1)
+
+    useEffect(()=>{
+        dispatch(tripsActionCreator.getTrips())
+        setTrips(trips1)
+    },[dispatch])
+
 
     return (<main>
             <h1 className="visually-hidden">Travel App</h1>
@@ -14,11 +26,9 @@ const Main = (props) => {
             <section className="trips">
                 <h2 className="visually-hidden">Trips List</h2>
                 <ul className="trip-list">
-                    {trips.map(trip=>{
+                    {trips1.map(trip=>{
                         return <TripCard trip={trip} key={trip.id}/>
                     })}
-
-
                 </ul>
             </section>
 

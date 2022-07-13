@@ -1,12 +1,27 @@
 const url = "https://travel-app-api.glitch.me/api/v1/trips"
 
 class Trips {
-    getAll = async () => {
-        return await fetch(`${url}/`).then(res => res.json())
+    getAll = async (token) => {
+        return await fetch(`${url}/`,{
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'authorization': `Bearer ${token}`
+            }
+        }).then(res => res.json())
     }
 
-    getById = async (id) => {
-        return await fetch(`${url}/${id}`).then(res => res.json())
+    getById = async (id,token) => {
+        return await fetch(`${url}/${id}`,{
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'authorization': `Bearer ${token}`
+                }
+            }
+            ).then(res => res.json())
     }
 }
 

@@ -1,32 +1,33 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './style.css'
-import * as data from '../../assets/data/data'
 import {BookingModal} from "../../components";
+import {useDispatch, useSelector} from "react-redux";
+
+import {tripsActionCreator, bookingActionCreator} from "../../store/actions";
 
 
 const Trip = ({user}) => {
     let ref = window.location.href
-    let trip = data.trips.find(el=>el.id === ref.split('/')[4])
-    let id = 0
+
+    const dispatch = useDispatch()
+
+    useEffect(()=>{
+        dispatch(tripsActionCreator.getTripById({id: ref.split('/')[4]}))
+    },[dispatch])
+
+    const {trip} = useSelector(state => ({
+        trip: state.trips.trip
+    }));
+
+    console.log(trip)
+
     const [modal, setModal] = useState(false)
     const [guests, setGuests] = useState(5)
     const [time, setTime] = useState('')
 
     const handleBook = () => {
-      data.bookings.append({
-          "id": id++,
-          "userId": user.fullName,
-          "tripId": trip.id,
-          "guests": guests,
-          "date": time,
-          "trip": {
-              "title": trip.title,
-              "duration": trip.duration,
-              "price": trip.price
-          },
-          "totalPrice": trip.price * guests,
-          "createdAt": new Date()
-      })
+        dispatch(tripsActionCreator.getTripById({id: ref.split('/')[4]}))
+
     }
 
 

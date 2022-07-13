@@ -12,7 +12,16 @@ const initialState = {
         "image": "https://i.gyazo.com/0aae9c20e73caebb07c0dbdfe2bbd89c.jpg",
         "createdAt": "2022-05-21T14:37:00.049Z"
     }],
-    trip: null,
+    trip: {
+        "id": "",
+        "title": "",
+        "description": "",
+        "level": "",
+        "duration": 0,
+        "price": 0,
+        "image": "https://i.gyazo.com/0aae9c20e73caebb07c0dbdfe2bbd89c.jpg",
+        "createdAt": "2022-05-21T14:37:00.049Z"
+    },
     isLoading: true
 };
 
