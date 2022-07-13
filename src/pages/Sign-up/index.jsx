@@ -2,19 +2,20 @@ import React, {useState} from 'react';
 import {Link, Navigate} from "react-router-dom";
 import './style.css'
 
-const SignUp = ({setUser}) => {
+const SignUp = ({handleSignUpSubmit}) => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [username, setUsername] = useState('')
 
-    const submitHandler = () => {
+    const submitHandler = (e) => {
+        e.preventDefault()
+
       if(password.length >= 3 && password.length <= 20){
-          setUser({
+          handleSignUpSubmit({
               fullName:username,
-              password:password,
               email:email,
-              isAuth: true
+              password:password,
           })
 
           return (<Navigate to={'/'}/>)

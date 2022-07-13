@@ -89,3 +89,11 @@
 .profile-nav__sign-out {
     min-height: auto;
 }
+
+.login{
+    color: var(--color-blue-400);
+
+    text-decoration: none;
+
+    text-align: center;
+}

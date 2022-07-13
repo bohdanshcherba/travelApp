@@ -4,16 +4,11 @@ import {Link, useNavigate} from "react-router-dom";
 import icon from '../../assets/images/briefcase.svg'
 import profileIcon from '../../assets/images/user.svg'
 
-const Header = ({user, setUser}) => {
+const Header = ({user,isAuth, handleLogOutSubmit}) => {
 
     const navigate = useNavigate()
     const logout = () => {
-      setUser({
-          fullName:user.fullName,
-          password:user.password,
-          email:user.email,
-          isAuth: false
-      })
+      handleLogOutSubmit()
         navigate('/sign-in')
     }
 
@@ -22,7 +17,7 @@ const Header = ({user, setUser}) => {
             <header className="header">
                 <div className="header__inner">
                     <Link to="/" className="header__logo">Travel App</Link>
-                    {user.isAuth ?
+                    {isAuth ?
                     <nav className="header__nav">
                         <ul className="nav-header__list">
                             <li className="nav-header__item" title="Bookings">
@@ -44,7 +39,21 @@ const Header = ({user, setUser}) => {
                                 </div>
                             </li>
                         </ul>
-                    </nav>: null }
+                    </nav>: <nav className="header__nav">
+                            <ul className="nav-header__list">
+                                <li className="nav-header__item" title="sing-in">
+                                    <Link to="/sign-in" className="nav-header__inner">
+                                        <span className='login' >Sing-in</span>
+                                    </Link>
+                                </li>
+                                <li className="nav-header__item" title="sing-up">
+                                    <Link to="/sign-up" className="nav-header__inner">
+                                        <span className='login'>Sing-up</span>
+                                    </Link>
+                                </li>
+                            </ul>
+
+                        </nav> }
                 </div>
             </header>
         </div>

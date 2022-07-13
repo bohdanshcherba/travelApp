@@ -34,7 +34,7 @@ class User {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'Authorization': JSON.stringify(`Bearer ${token}`)
+                'authorization': `Bearer ${token}`
             }
 
         }).then(res => res.json())

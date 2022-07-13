@@ -10,7 +10,10 @@ const login = createAsyncThunk(ActionType.LOG_IN, async (request, {extra: {servi
 );
 
 const registration = createAsyncThunk(ActionType.SIGN_UP, async (request, {extra: {services}}) => {
-        const data = await services.user.signUp(request)
+    console.log(request)
+
+    const data = await services.user.signUp(request)
+    console.log(data)
 
         services.storage.setItem("token", data.token)
         return {user: data.user}

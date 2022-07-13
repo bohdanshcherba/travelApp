@@ -1,5 +1,5 @@
 import {createReducer, isAnyOf} from '@reduxjs/toolkit';
-import {usersActionCreator} from "../actions";
+import {userActionCreator} from "../actions";
 
 const initialState = {
     currentUser: null,
@@ -9,9 +9,9 @@ const initialState = {
 const reducer = createReducer(initialState, builder => {
 
     builder.addMatcher(isAnyOf(
-        usersActionCreator.login.rejected,
-        usersActionCreator.registration.rejected,
-        usersActionCreator.loadCurrentUser.rejected,
+        userActionCreator.login.rejected,
+        userActionCreator.registration.rejected,
+        userActionCreator.loadCurrentUser.rejected,
     ), (state) => {
         state.currentUser = null
         state.isLoading = false
@@ -19,19 +19,19 @@ const reducer = createReducer(initialState, builder => {
     });
 
     builder.addMatcher(isAnyOf(
-        usersActionCreator.login.pending,
-        usersActionCreator.logout.pending,
-        usersActionCreator.loadCurrentUser.pending,
-        usersActionCreator.registration.pending,
+        userActionCreator.login.pending,
+        userActionCreator.logout.pending,
+        userActionCreator.loadCurrentUser.pending,
+        userActionCreator.registration.pending,
     ), (state) => {
         state.isLoading = true
     });
 
     builder.addMatcher(isAnyOf(
-        usersActionCreator.login.fulfilled,
-        usersActionCreator.logout.fulfilled,
-        usersActionCreator.loadCurrentUser.fulfilled,
-        usersActionCreator.registration.fulfilled,
+        userActionCreator.login.fulfilled,
+        userActionCreator.logout.fulfilled,
+        userActionCreator.loadCurrentUser.fulfilled,
+        userActionCreator.registration.fulfilled,
     ), (state, action) => {
 
         state.currentUser = action.payload.user;

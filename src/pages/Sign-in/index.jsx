@@ -1,23 +1,15 @@
 import React, {useState} from 'react';
-import {Link, useNavigate } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 
-const SignIn = ({user, setUser}) => {
+const SignIn = ({handleSignInSubmit}) => {
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
     const navigate = useNavigate();
 
     const signInHandler = () => {
-      if (email === user.email && password === user.password){
-          setUser({
-              fullName:user.fullName,
-              password:user.password,
-              email:user.email,
-              isAuth: true
-          })
-          navigate('/')
-      }
-
+        handleSignInSubmit({email, password})
+        navigate('/')
 
     }
 
@@ -27,11 +19,13 @@ const SignIn = ({user, setUser}) => {
             <h2 className="sign-in-form__title">Sign In</h2>
             <label className="trip-popup__input input">
                 <span className="input__heading">Email</span>
-                <input name="email" type="email" required value={email} onChange={event => setEmail(event.target.value)}/>
+                <input name="email" type="email" required value={email}
+                       onChange={event => setEmail(event.target.value)}/>
             </label>
             <label className="trip-popup__input input">
                 <span className="input__heading">Password</span>
-                <input name="password" type="password" autoComplete="new-password" required value={password} onChange={event => setPassword(event.target.value)}/>
+                <input name="password" type="password" autoComplete="new-password" required value={password}
+                       onChange={event => setPassword(event.target.value)}/>
             </label>
             <button className="button" type="submit" onClick={signInHandler}>Sign In</button>
         </form>

@@ -6,7 +6,7 @@ export const store = configureStore({
     reducer: {
         user: UserReducer,
         trips: TripsReducer,
-        booking: BookingReducer()
+        booking: BookingReducer,
     },
     middleware: getDefaultMiddleware => (getDefaultMiddleware({
         thunk: {
